@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://brfiufs2kjvfv"]
+
+[ext_resource type="Script" uid="uid://b5fles5pb5k7" path="res://main.gd" id="1_dg77c"]
+[ext_resource type="Texture2D" uid="uid://bapdarqgbk6c6" path="res://texture/PavingStones128_8K-JPG_Color.jpg" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://b4dni2848tput" path="res://models/celula_interfase_completa.glb" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://gs0ni6scd6tv" path="res://scripts/player.gd" id="2_4c57u"]
+[ext_resource type="Script" uid="uid://dc8j66e4cm83c" path="res://scripts/giro.gd" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://edl0wiy7hnsg" path="res://models/celula_profase.glb" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cfxlncftdeckf" path="res://models/celula_prometafase.glb" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bcbn5clk2jcck" path="res://models/celula_metafase.glb" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d0ehqo3tf42nc" path="res://models/celula_anafase.glb" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://cl4tspg2qj5gr" path="res://models/celula_telofase.glb" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://dsqqlcg84e3rm" path="res://texture/EQUIPO LENTES VR.png" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://cgk3ndjj625wl" path="res://models/baby_yoda.glb" id="11_efxa6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_texture = ExtResource("1_ig7tw")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(40, 0, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7dm0k"]
+size = Vector3(40, 40, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
+size = Vector3(40, 40, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(1, 40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(1, 40, 40)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lquwl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7mycd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+
+[node name="Main" type="Node3D" unique_id=222521001]
+script = ExtResource("1_dg77c")
+
+[node name="World" type="Node3D" parent="." unique_id=1257766721]
+
+[node name="Floor" type="StaticBody3D" parent="World" unique_id=1294421697]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Floor" unique_id=1834387622]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ig7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Floor" unique_id=415930726]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="Wall_North" type="StaticBody3D" parent="World" unique_id=1685399899]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall_North" unique_id=1309480401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.058, 18.809502, -16.691525)
+shape = SubResource("BoxShape3D_7dm0k")
+
+[node name="Wall_South" type="StaticBody3D" parent="World" unique_id=127031405]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall_South" unique_id=355423512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.839268, 14.055292)
+shape = SubResource("BoxShape3D_ig7tw")
+
+[node name="Wall_East" type="StaticBody3D" parent="World" unique_id=1785596885]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall_East" unique_id=386694925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.858486, 18.515814, 0)
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="Wall_West" type="StaticBody3D" parent="World" unique_id=1896990170]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Wall_West" unique_id=781690348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.059432, 18.75239, 0)
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="Player" type="CharacterBody3D" parent="World" unique_id=1486234478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8914738, 1.0518782, 2.7358203)
+script = ExtResource("2_4c57u")
+
+[node name="Head" type="Node3D" parent="World/Player" unique_id=874157402]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Player" unique_id=622890801]
+mesh = SubResource("CapsuleMesh_lquwl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Player" unique_id=465848010]
+shape = SubResource("CapsuleShape3D_7mycd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=1364348339]
+transform = Transform3D(1, 0, 0, 0, 0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, -0.8474579, 0.75938416, 15.968104)
+light_energy = 0.842
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=2136551078]
+environment = SubResource("Environment_ig7tw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World" unique_id=2048834775]
+visible = false
+
+[node name="celula_interfase_completa" parent="World" unique_id=1956049756 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -3.173, 1.5, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="celula_profase" parent="World" unique_id=1278158355 instance=ExtResource("3_h2yge")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.138, 1.5, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="celula_prometafase" parent="World" unique_id=395767209 instance=ExtResource("5_lquwl")]
+transform = Transform3D(-4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, 0, 0, 0, 0.1, 0.6892724, 1.5, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="celula_metafase" parent="World" unique_id=909796102 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.699646, 1.5, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="celula_anafase" parent="World" unique_id=1859110541 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 4.748926, 1.5, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="celula_telofase" parent="World" unique_id=1378162124 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 6.755904, 1.7511296, -3.523)
+script = ExtResource("3_1bvp3")
+
+[node name="Mitosis" type="Label3D" parent="World" unique_id=382488988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7051759, 3.3428664, -3.8165827)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Mitosis"
+font_size = 140
+
+[node name="Interfase" type="Label3D" parent="World" unique_id=1541082610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3726523, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Interfase"
+font_size = 50
+
+[node name="Profase" type="Label3D" parent="World" unique_id=924766998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2139534, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Profase"
+font_size = 50
+
+[node name="Prometafase" type="Label3D" parent="World" unique_id=332420196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78741276, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Prometafase"
+font_size = 50
+
+[node name="Metafase" type="Label3D" parent="World" unique_id=360963107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.788165, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Metafase"
+font_size = 50
+
+[node name="Anafase" type="Label3D" parent="World" unique_id=333090850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.89198, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Anafase"
+font_size = 50
+
+[node name="Telofase" type="Label3D" parent="World" unique_id=597526153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0180597, 0.26, -3.661486)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Telofase"
+font_size = 50
+
+[node name="Sprite3D" type="Sprite3D" parent="World" unique_id=501358591]
+transform = Transform3D(-4.3711385e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.3711385e-08, -9.174939, 4.539038, 5.018115)
+texture = ExtResource("9_kek77")
+
+[node name="Sketchfab_Scene" parent="World" unique_id=963696330 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-0.00031153148, 0, -0.00030204936, 0, 0.00037339074, 0, 0.0002305632, 0, -0.00040812194, -7.7516, -0.14386559, -2.990724)
+
+[node name="Sketchfab_Scene2" parent="World" unique_id=1191426402 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-0.0002812411, 0, 0.00034935557, 0, 0.00037339074, 0, -0.00026667342, 0, -0.0003684399, 12.08717, -0.14386559, -2.1570783)
+
+[node name="SubViewportContainerL" type="SubViewportContainer" parent="." unique_id=2120520619]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 1.0
+
+[node name="SubViewportL" type="SubViewport" parent="SubViewportContainerL" unique_id=1583157819]
+handle_input_locally = false
+size = Vector2i(960, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainerL/SubViewportL" unique_id=733414341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5914738, 1.3408782, 2.7358203)
+
+[node name="SubViewportContainerR" type="SubViewportContainer" parent="." unique_id=1118978847]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 961.0
+offset_right = 960.0
+
+[node name="SubViewportR" type="SubViewport" parent="SubViewportContainerR" unique_id=1614315012]
+handle_input_locally = false
+size = Vector2i(960, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainerR/SubViewportR" unique_id=1171383347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1914737, 1.3408782, 2.7358203)
