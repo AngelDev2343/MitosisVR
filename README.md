@@ -7,6 +7,8 @@
 
 **Mitosis VR** es una experiencia educativa inmersiva en **realidad virtual** desarrollada en **Godot 4** como proyecto academico, que permite explorar en 3D las distintas fases de la mitosis celular. Diseñada para ser usada con cualquier lente tipo **Cardboard** desde cualquier dispositivo móvil, o directamente en escritorio con mouse y teclado.
 
+https://github.com/user-attachments/assets/22a59d27-2b45-4ae1-9878-91b5effb37d3
+
 ---
 
 ## 🎯 Objetivo
